@@ -13,5 +13,4 @@ UCLASS()
 class MYACTIONRPG_API ARPGPlayerControllerBase : public APlayerController
 {
 	GENERATED_BODY()
-	
 };
