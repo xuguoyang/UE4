@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "RPGGameInstanceBase.generated.h"
 
@@ -16,5 +15,4 @@ class MYACTIONRPG_API URPGGameInstanceBase : public UGameInstance
 	GENERATED_BODY()
 
 public:
-
 };

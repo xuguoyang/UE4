@@ -1,8 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
-#include "MyActionRPG.h"
+#include "RPGType.h"
 #include "GameFramework/Character.h"
 #include "RPGCharacterBase.generated.h"
 

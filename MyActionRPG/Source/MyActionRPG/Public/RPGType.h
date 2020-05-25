@@ -15,7 +15,7 @@ struct MYACTIONRPG_API FRPGItemSlot
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
     FPrimaryAssetType ItemType;
 
-    /** 格子序号*/
+    /** 格子序号*/ 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
     int32 SlotNumber;
 

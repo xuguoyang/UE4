@@ -2,11 +2,11 @@
 
 #pragma once
 
-#include "MyActionRPG.h"
 #include "Engine/DataAsset.h"
 #include "Styling/SlateBrush.h"
 #include "RPGAssetManager.h"
 #include "RPGItem.generated.h"
+
 
 /**
  * 

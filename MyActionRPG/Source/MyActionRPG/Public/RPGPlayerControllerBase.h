@@ -2,8 +2,6 @@
 
 #pragma once
 
-#include "MyActionRPG.h"
-//#include "RPGType.h"
 #include "GameFramework/PlayerController.h"
 #include "RPGPlayerControllerBase.generated.h"
 

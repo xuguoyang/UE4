@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Engine/AssetManager.h"
 #include "RPGAssetManager.generated.h"
 
@@ -29,4 +28,5 @@ public:
 
     /** ╪сть╣ю╬ъ */
     URPGItem* ForceLoadItem(const FPrimaryAssetId& PrimaryAssetId, bool bLogWarning = true);
+
 };

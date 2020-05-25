@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "Items/RPGItem.h"
 #include "RPGWeaponItem.generated.h"
 
@@ -22,4 +21,5 @@ public:
     /** Œ‰∆˜actor UCLASS∂‘œÛ*/
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Weapon)
     TSubclassOf<AActor> WeaponActor;
+
 };
