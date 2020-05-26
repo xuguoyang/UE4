@@ -54,7 +54,7 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Abilities)
     int32 AbilityLevel;
 
-    /** 获取道具主ID*/
+    /** 获取道具资源ID*/
     UFUNCTION(BlueprintCallable, Category = Item)
     FString GetIdentifierString() const;
 

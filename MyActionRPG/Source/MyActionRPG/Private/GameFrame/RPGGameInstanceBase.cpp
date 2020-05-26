@@ -3,3 +3,12 @@
 
 #include "RPGGameInstanceBase.h"
 
+URPGGameInstanceBase::URPGGameInstanceBase()
+{
+
+}
+
+URPGSaveGame* URPGGameInstanceBase::GetCurrentSaveGame()
+{
+    return CurrentSaveGame;
+}

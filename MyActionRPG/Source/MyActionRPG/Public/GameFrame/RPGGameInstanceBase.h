@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "RPGType.h"
 #include "Engine/GameInstance.h"
 #include "RPGGameInstanceBase.generated.h"
 
@@ -15,4 +16,27 @@ class MYACTIONRPG_API URPGGameInstanceBase : public UGameInstance
 	GENERATED_BODY()
 
 public:
+    URPGGameInstanceBase();
+
+    /**新玩家的装备道具列表*/
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory)
+    TMap<FPrimaryAssetId, FRPGItemData> DefaultInventory;
+
+    /**每个类型的插槽数量*/
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory)
+    TMap<FPrimaryAssetType, int32> ItemSlotsPerType;
+
+    /**加载保存数据的原生委托*/
+    FOnSaveGameLoadedNative OnSaveGameLoadedNative;
+
+    /**加载保存数据完成后调用的委托*/
+    UPROPERTY(BlueprintAssignable, Category = Inventory)
+    FOnSaveGameLoaded OnSaveGameLoaded;
+
+    /**返回保存数据的对象指针*/
+    UFUNCTION(BlueprintCallable, Category = Save)
+    URPGSaveGame* GetCurrentSaveGame();
+protected:
+    UPROPERTY()
+    URPGSaveGame* CurrentSaveGame;
 };
