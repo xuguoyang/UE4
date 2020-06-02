@@ -18,7 +18,7 @@ class MYACTIONRPG_API URPGGameInstanceBase : public UGameInstance
 public:
     URPGGameInstanceBase();
 
-    /**新玩家的装备道具列表*/
+    /**新玩家默认的装备道具列表*/
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Inventory)
     TMap<FPrimaryAssetId, FRPGItemData> DefaultInventory;
 
@@ -36,6 +36,9 @@ public:
     /**返回保存数据的对象指针*/
     UFUNCTION(BlueprintCallable, Category = Save)
     URPGSaveGame* GetCurrentSaveGame();
+
+    /**给玩家添加默认道具*/
+    void AddDefaultInventory(URPGSaveGame* SaveGame, bool bRemoveExtra);
 protected:
     UPROPERTY()
     URPGSaveGame* CurrentSaveGame;

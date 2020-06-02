@@ -9,7 +9,7 @@
 
 void ARPGPlayerControllerBase::BeginPlay()
 {
-    // 加载所有道具
+    // 加载所有存档道具
     LoadInventory();
 
     Super::BeginPlay();
@@ -87,7 +87,7 @@ bool ARPGPlayerControllerBase::LoadInventory()
         return false;
     }
 
-    // 绑定委托回调
+    // 绑定数据加载完成的委托回调
     if (!GameInstance->OnSaveGameLoadedNative.IsBoundToObject(this))
     {
         GameInstance->OnSaveGameLoadedNative.AddUObject(this, &ARPGPlayerControllerBase::HandleSaveGameLoaded);
