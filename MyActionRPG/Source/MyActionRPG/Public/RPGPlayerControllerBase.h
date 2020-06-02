@@ -16,6 +16,14 @@ class MYACTIONRPG_API ARPGPlayerControllerBase : public APlayerController
 public:
     virtual void BeginPlay() override;
 
+    // 添加一个新的装备道具
+    UFUNCTION(BlueprintCallable, Category = Inventory)
+    bool AddInventoryItem(URPGItem* NewItem, int32 ItemCount = 1, int32 ItemLevel = 1, bool bAutoSlot = true);
+
+    // 获取装备数据
+    UFUNCTION(BlueprintPure, Category = Inventory)
+    bool GetInventoryItemData(URPGItem* Item, FRPGItemData& ItemData) const;
+
     /** 玩家拥有的Item列表(数量和等级) */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory)
     TMap<URPGItem*, FRPGItemData> InventoryData;
@@ -39,12 +47,20 @@ public:
     /** Native version above, called before BP delegate */
     FOnSlottedItemChangedNative OnSlottedItemChangedNative;
 
+    /** Delegate called when an inventory slot has changed */
+    UPROPERTY(BlueprintAssignable, Category = Inventory)
+    FOnSlottedItemChanged OnSlottedItemChanged;
+
     /** Delegate called when the inventory has been loaded/reloaded */
     UPROPERTY(BlueprintAssignable, Category = Inventory)
     FOnInventoryLoaded OnInventoryLoaded;
 
     /** Native version above, called before BP delegate */
     FOnInventoryLoadedNative OnInventoryLoadedNative;
+
+    // 蓝图回调函数
+    UFUNCTION(BlueprintImplementableEvent, Category = Inventory)
+    void SlottedItemChanged(FRPGItemSlot ItemSlot, URPGItem* Item);
 protected:
     /** Called when a global save game as been loaded */
     void HandleSaveGameLoaded(URPGSaveGame* NewSaveGame);
