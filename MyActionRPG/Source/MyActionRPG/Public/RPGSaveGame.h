@@ -54,4 +54,9 @@ protected:
     /**保存文档的最后一个版本号*/
     UPROPERTY()
     int32 SavedDataVersion;
+
+    UPROPERTY()
+    TArray<FPrimaryAssetId> InventoryItems_DEPRECATED;
+
+    virtual void Serialize(FArchive& Ar) override;
 };
