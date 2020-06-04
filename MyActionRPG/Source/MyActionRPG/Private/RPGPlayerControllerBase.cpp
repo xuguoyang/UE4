@@ -60,6 +60,89 @@ bool ARPGPlayerControllerBase::AddInventoryItem(URPGItem* NewItem, int32 ItemCou
     return false;
 }
 
+bool ARPGPlayerControllerBase::RemoveInventoryItem(URPGItem* RemovedItem, int32 RemoveCount /*= 1*/)
+{
+    if (!RemovedItem)
+    {
+        UE_LOG(LogActionRPG, Warning, TEXT("RemoveInventoryItem: Failed trying to remove null item!"));
+        return false;
+    }
+
+    // Find current item data, which may be empty
+    FRPGItemData NewData;
+    GetInventoryItemData(RemovedItem, NewData);
+
+    if (!NewData.IsValid())
+    {
+        // Wasn't found
+        return false;
+    }
+
+    // If RemoveCount <= 0, delete all
+    if (RemoveCount <= 0)
+    {
+        NewData.ItemCount = 0;
+    }
+    else
+    {
+        NewData.ItemCount -= RemoveCount;
+    }
+
+    if (NewData.ItemCount > 0)
+    {
+        // Update data with new count
+        InventoryData.Add(RemovedItem, NewData);
+    }
+    else
+    {
+        // Remove item entirely, make sure it is unslotted
+        InventoryData.Remove(RemovedItem);
+
+        for (TPair<FRPGItemSlot, URPGItem*>& Pair : SlottedItems)
+        {
+            if (Pair.Value == RemovedItem)
+            {
+                Pair.Value = nullptr;
+                NotifySlottedItemChanged(Pair.Key, Pair.Value);
+            }
+        }
+    }
+
+    // If we got this far, there is a change so notify and save
+    NotifyInventoryItemChanged(false, RemovedItem);
+
+    SaveInventory();
+    return true;
+}
+
+void ARPGPlayerControllerBase::GetInventoryItems(TArray<URPGItem*>& Items, FPrimaryAssetType ItemType)
+{
+    for (const TPair<URPGItem*, FRPGItemData>& Pair : InventoryData)
+    {
+        if (Pair.Key)
+        {
+            FPrimaryAssetId AssetId = Pair.Key->GetPrimaryAssetId();
+
+            // Filters based on item type
+            if (AssetId.PrimaryAssetType == ItemType || !ItemType.IsValid())
+            {
+                Items.Add(Pair.Key);
+            }
+        }
+    }
+}
+
+int32 ARPGPlayerControllerBase::GetInventoryItemCount(URPGItem* Item) const
+{
+    const FRPGItemData* FoundItem = InventoryData.Find(Item);
+
+    if (FoundItem)
+    {
+        return FoundItem->ItemCount;
+    }
+    return 0;
+}
+
 bool ARPGPlayerControllerBase::GetInventoryItemData(URPGItem* Item, FRPGItemData& ItemData) const
 {
     const FRPGItemData* FoundItem = InventoryData.Find(Item);
@@ -71,6 +154,58 @@ bool ARPGPlayerControllerBase::GetInventoryItemData(URPGItem* Item, FRPGItemData
     }
     ItemData = FRPGItemData(0, 0);
     return false;
+}
+
+bool ARPGPlayerControllerBase::SetSlottedItem(FRPGItemSlot ItemSlot, URPGItem* Item)
+{
+    // Iterate entire inventory because we need to remove from old slot
+    bool bFound = false;
+    for (TPair<FRPGItemSlot, URPGItem*>& Pair : SlottedItems)
+    {
+        if (Pair.Key == ItemSlot)
+        {
+            // Add to new slot
+            bFound = true;
+            Pair.Value = Item;
+            NotifySlottedItemChanged(Pair.Key, Pair.Value);
+        }
+        else if (Item != nullptr && Pair.Value == Item)
+        {
+            // If this item was found in another slot, remove it
+            Pair.Value = nullptr;
+            NotifySlottedItemChanged(Pair.Key, Pair.Value);
+        }
+    }
+
+    if (bFound)
+    {
+        SaveInventory();
+        return true;
+    }
+
+    return false;
+}
+
+URPGItem* ARPGPlayerControllerBase::GetSlottedItem(FRPGItemSlot ItemSlot) const
+{
+    URPGItem* const* FoundItem = SlottedItems.Find(ItemSlot);
+
+    if (FoundItem)
+    {
+        return *FoundItem;
+    }
+    return nullptr;
+}
+
+void ARPGPlayerControllerBase::GetSlottedItems(TArray<URPGItem*>& Items, FPrimaryAssetType ItemType, bool bOutputEmptyIndexes)
+{
+    for (TPair<FRPGItemSlot, URPGItem*>& Pair : SlottedItems)
+    {
+        if (Pair.Key.ItemType == ItemType || !ItemType.IsValid())
+        {
+            Items.Add(Pair.Value);
+        }
+    }
 }
 
 bool ARPGPlayerControllerBase::LoadInventory()

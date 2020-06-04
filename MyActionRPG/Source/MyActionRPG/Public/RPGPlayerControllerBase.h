@@ -20,9 +20,33 @@ public:
     UFUNCTION(BlueprintCallable, Category = Inventory)
     bool AddInventoryItem(URPGItem* NewItem, int32 ItemCount = 1, int32 ItemLevel = 1, bool bAutoSlot = true);
 
+    /**删除一个装备道具 */
+    UFUNCTION(BlueprintCallable, Category = Inventory)
+    bool RemoveInventoryItem(URPGItem* RemovedItem, int32 RemoveCount = 1);
+
+    /**根据道具类型，获取道具列表 */
+    UFUNCTION(BlueprintCallable, Category = Inventory)
+    void GetInventoryItems(TArray<URPGItem*>& Items, FPrimaryAssetType ItemType);
+
+    /**返回 Inventory中Item的数量 */
+    UFUNCTION(BlueprintPure, Category = Inventory)
+    int32 GetInventoryItemCount(URPGItem* Item) const;
+
     // 获取装备数据
     UFUNCTION(BlueprintPure, Category = Inventory)
     bool GetInventoryItemData(URPGItem* Item, FRPGItemData& ItemData) const;
+
+    /** 设置slot中的值，传入空指针清空对应slot */
+    UFUNCTION(BlueprintCallable, Category = Inventory)
+    bool SetSlottedItem(FRPGItemSlot ItemSlot, URPGItem* Item);
+
+    /** 获取slot中对应的Item */
+    UFUNCTION(BlueprintPure, Category = Inventory)
+    URPGItem* GetSlottedItem(FRPGItemSlot ItemSlot) const;
+
+    /** 返回slots中指定type的所有Item */
+    UFUNCTION(BlueprintCallable, Category = Inventory)
+    void GetSlottedItems(TArray<URPGItem*>& Items, FPrimaryAssetType ItemType, bool bOutputEmptyIndexes);
 
     /** 玩家拥有的Item列表(数量和等级) */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory)
