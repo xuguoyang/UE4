@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "MyActionRPG.h"
 #include "AttributeSet.h"
 #include "AbilitySystemComponent.h"
 #include "RPGAttributeSet.generated.h"
