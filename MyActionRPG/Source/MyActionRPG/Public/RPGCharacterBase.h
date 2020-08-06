@@ -25,4 +25,14 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+protected:
+    // 角色等级
+
+    // 技能系统使用的属性集
+    UPROPERTY()
+    URPGAttributeSet* AttributeSet;
+
+    // 装备更新的回调
+    FDelegateHandle InventoryUpdateHandle;
+    FDelegateHandle InventoryLoadedHandle;
 };

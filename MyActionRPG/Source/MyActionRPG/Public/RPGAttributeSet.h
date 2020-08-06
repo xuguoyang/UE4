@@ -29,6 +29,10 @@ public:
     FGameplayAttributeData Health;
     ATTRIBUTE_ACCESSORS(URPGAttributeSet, Health)
 
+    // MaxHealth
+    UPROPERTY(BlueprintReadOnly, Category = "Health", ReplicatedUsing = OnRep_MaxHealth)
+    FGameplayAttributeData MaxHealth;
+    ATTRIBUTE_ACCESSORS(URPGAttributeSet, MaxHealth)
 protected:
     UFUNCTION()
     virtual void OnRep_Health();
