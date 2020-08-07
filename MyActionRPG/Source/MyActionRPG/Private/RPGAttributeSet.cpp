@@ -23,3 +23,8 @@ void URPGAttributeSet::OnRep_Health()
 {
     GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, Health);
 }
+
+void URPGAttributeSet::OnRep_MaxHealth()
+{
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, MaxHealth);
+}

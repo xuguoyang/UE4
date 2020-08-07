@@ -36,4 +36,8 @@ public:
 protected:
     UFUNCTION()
     virtual void OnRep_Health();
+
+    UFUNCTION()
+    virtual void OnRep_MaxHealth();
+
 };

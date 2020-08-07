@@ -3,6 +3,7 @@
 #pragma once
 #include "RPGType.h"
 #include "GameFramework/Character.h"
+#include "RPGAttributeSet.h"
 #include "RPGCharacterBase.generated.h"
 
 UCLASS()
