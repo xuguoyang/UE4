@@ -11,6 +11,11 @@ ARPGCharacterBase::ARPGCharacterBase()
 
 }
 
+UAbilitySystemComponent* ARPGCharacterBase::GetAbilitySystemComponent() const
+{
+    return nullptr;
+}
+
 // Called when the game starts or when spawned
 void ARPGCharacterBase::BeginPlay()
 {

@@ -4,10 +4,11 @@
 #include "RPGType.h"
 #include "GameFramework/Character.h"
 #include "RPGAttributeSet.h"
+#include "AbilitySystemInterface.h"
 #include "RPGCharacterBase.generated.h"
 
 UCLASS()
-class MYACTIONRPG_API ARPGCharacterBase : public ACharacter
+class MYACTIONRPG_API ARPGCharacterBase : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -15,6 +16,7 @@ public:
 	// Sets default values for this character's properties
 	ARPGCharacterBase();
 
+    UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
