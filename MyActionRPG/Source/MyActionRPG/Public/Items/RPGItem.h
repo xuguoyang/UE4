@@ -17,6 +17,10 @@ class MYACTIONRPG_API URPGItem : public UPrimaryDataAsset
 	GENERATED_BODY()
 public:
 	URPGItem()
+		:Price(0)
+		,MaxCount(1)
+		,MaxLevel(1)
+		,AbilityLevel(1)
 	{}
 
     /** 道具类型 */
@@ -59,4 +63,8 @@ public:
     FString GetIdentifierString() const;
 
     virtual FPrimaryAssetId GetPrimaryAssetId() const override;
+	
+	//商品价格
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
+	int32 Price;
 };

@@ -3,9 +3,11 @@
 #pragma once
 #include "RPGType.h"
 #include "GameFramework/Character.h"
-#include "RPGAttributeSet.h"
 #include "AbilitySystemInterface.h"
 #include "RPGCharacterBase.generated.h"
+
+class URPGAbilitySystemComponent;
+class URPGAttributeSet;
 
 UCLASS()
 class MYACTIONRPG_API ARPGCharacterBase : public ACharacter, public IAbilitySystemInterface
@@ -29,9 +31,13 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
+    /** 技能组件*/
+    UPROPERTY()
+    URPGAbilitySystemComponent* AbilitySystemComponent;
+
     // 角色等级
 
-    // 技能系统使用的属性集
+    /** 技能系统使用的属性集,添加为拥有技能系统组件的Actor子对象后会自动注册给技能系统*/
     UPROPERTY()
     URPGAttributeSet* AttributeSet;
 
