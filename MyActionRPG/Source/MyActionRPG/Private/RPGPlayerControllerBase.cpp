@@ -342,7 +342,11 @@ bool ARPGPlayerControllerBase::FillEmptySlotWithItem(URPGItem* NewItem)
 
 void ARPGPlayerControllerBase::NotifyInventoryItemChanged(bool bAdded, URPGItem* Item)
 {
-    
+    // Notify native before blueprint
+    OnInventoryItemChangedNative.Broadcast(bAdded, Item);
+    OnInventoryItemChanged.Broadcast(bAdded, Item);
+
+
 }
 
 void ARPGPlayerControllerBase::NotifySlottedItemChanged(FRPGItemSlot ItemSlot, URPGItem* Item)
@@ -356,5 +360,6 @@ void ARPGPlayerControllerBase::NotifySlottedItemChanged(FRPGItemSlot ItemSlot, U
 
 void ARPGPlayerControllerBase::NotifyInventoryLoaded()
 {
-
+    OnInventoryLoadedNative.Broadcast();
+    OnInventoryLoaded.Broadcast();
 }

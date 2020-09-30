@@ -52,7 +52,7 @@ void URPGTask_PlayMontageWaitEvent::Activate()
 
                 // 绑定蒙太奇结束的回调
                 MontageEndedDelegate.BindUObject(this, &URPGTask_PlayMontageWaitEvent::OnMontageEnded);
-                AnimInstance->Montage_SetBlendingOutDelegate(MontageEndedDelegate);
+                AnimInstance->Montage_SetEndDelegate(MontageEndedDelegate);
 
                 // 设置主玩家根动画缩放
                 ACharacter* Character = Cast<ACharacter>(GetAvatarActor());

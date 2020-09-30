@@ -5,6 +5,8 @@
 #include "Engine/DataAsset.h"
 #include "Styling/SlateBrush.h"
 #include "RPGAssetManager.h"
+#include "RPGGameplayAbility.h"
+#include "SubclassOf.h"
 #include "RPGItem.generated.h"
 
 
@@ -17,10 +19,10 @@ class MYACTIONRPG_API URPGItem : public UPrimaryDataAsset
 	GENERATED_BODY()
 public:
 	URPGItem()
-		:Price(0)
-		,MaxCount(1)
+		:MaxCount(1)
 		,MaxLevel(1)
 		,AbilityLevel(1)
+        ,Price(0)
 	{}
 
     /** 道具类型 */
@@ -67,4 +69,8 @@ public:
 	//商品价格
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Item)
 	int32 Price;
+
+    /** 道具附加的技能*/
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Abilities)
+    TSubclassOf<URPGGameplayAbility> GrantedAbility;
 };

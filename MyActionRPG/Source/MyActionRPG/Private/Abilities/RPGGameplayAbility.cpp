@@ -49,6 +49,17 @@ FRPGGameplayEffectContainerSpec URPGGameplayAbility::MakeEffectContainerSpecFrom
             TargetTypeCDO->GetTargets(OwningCharacter, AvatarActor, EventData, HitResults, TargetActors);
             ReturnSpec.AddTargets(HitResults, TargetActors);
         }
+
+        if (OverrideGameplayLevel == INDEX_NONE)
+        {
+            OverrideGameplayLevel = this->GetAbilityLevel(); //OwningASC->GetDefaultAbilityLevel();
+        }
+
+        // ´´½¨GameplayEffectSpecs
+        for (const TSubclassOf<UGameplayEffect>& EffectClass : Contanier.TargetGameplayEffectClasses)
+        {
+            ReturnSpec.TargetGameplayEffectSpecs.Add(MakeOutgoingGameplayEffectSpec(EffectClass, OverrideGameplayLevel));
+        }
     }
     return ReturnSpec;
 }

@@ -57,6 +57,7 @@ struct MYACTIONRPG_API FRPGItemSlot
     }
 };
 
+// URPGItemµÄ¶¯Ì¬ÊôÐÔ
 USTRUCT(BlueprintType)
 struct MYACTIONRPG_API FRPGItemData
 {

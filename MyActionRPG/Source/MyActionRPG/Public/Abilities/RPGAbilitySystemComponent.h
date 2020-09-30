@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
+#include "RPGGameplayAbility.h"
 #include "RPGAbilitySystemComponent.generated.h"
 
 /**
@@ -15,4 +16,6 @@ class MYACTIONRPG_API URPGAbilitySystemComponent : public UAbilitySystemComponen
 	GENERATED_BODY()
 public:
     static URPGAbilitySystemComponent* GetAbilitySystemComponentFromActor(const AActor* Actor, bool LookForComponent = false);
+
+    void GetActiveAbilitiesWithTags(const FGameplayTagContainer& GameplayTagContainer, TArray<URPGGameplayAbility*>& ActiveAbilities);
 };

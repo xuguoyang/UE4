@@ -18,6 +18,6 @@ public:
 	URPGTokenItem()
 	{
 		ItemType = URPGAssetManager::TokenItemType;
-		MaxCount = 0;// Infinite
+		MaxCount = 0;// Infinitezsa
 	}
 };

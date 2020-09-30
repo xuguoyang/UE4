@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/PlayerController.h"
+#include "RPGInventoryInterface.h"
 #include "RPGPlayerControllerBase.generated.h"
 
 
@@ -10,7 +11,7 @@
  * 
  */
 UCLASS()
-class MYACTIONRPG_API ARPGPlayerControllerBase : public APlayerController
+class MYACTIONRPG_API ARPGPlayerControllerBase : public APlayerController, public IRPGInventoryInterface
 {
 	GENERATED_BODY()
 public:
@@ -52,7 +53,7 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory)
     TMap<URPGItem*, FRPGItemData> InventoryData;
 
-    /** 插槽对应的道具Map*/
+    /** 玩家装备栏中的道具*/
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory)
     TMap<FRPGItemSlot, URPGItem*> SlottedItems;
 
@@ -82,9 +83,40 @@ public:
     /** Native version above, called before BP delegate */
     FOnInventoryLoadedNative OnInventoryLoadedNative;
 
+    FOnInventoryItemChangedNative OnInventoryItemChangedNative;
+    
+    UPROPERTY(BlueprintAssignable, Category = Inventory)
+    FOnInventoryItemChanged OnInventoryItemChanged;
+
+	/** Called after the inventory was changed and we notified all delegates */
+	UFUNCTION(BlueprintImplementableEvent, Category = Inventory)
+	void InventoryItemChanged(bool bAdded, URPGItem* Item);
+
     // 蓝图回调函数
     UFUNCTION(BlueprintImplementableEvent, Category = Inventory)
     void SlottedItemChanged(FRPGItemSlot ItemSlot, URPGItem* Item);
+
+    /** 实现IRPGInventoryInterface接口的函数*/
+    virtual const TMap<URPGItem*, FRPGItemData>& GetInventoryDataMap() const override
+    {
+        return InventoryData;
+    }
+    virtual const TMap<FRPGItemSlot, URPGItem*>& GetSlottedItemMap() const override
+    {
+        return SlottedItems;
+    }
+    virtual FOnInventoryItemChangedNative& GetInventoryItemChangedDelegate() override
+    {
+        return OnInventoryItemChangedNative;
+    }
+    virtual FOnSlottedItemChangedNative& GetSlottedItemChangedDelegate() override
+    {
+        return OnSlottedItemChangedNative;
+    }
+    virtual FOnInventoryLoadedNative& GetInventoryLoadedDelegate() override
+    {
+        return OnInventoryLoadedNative;
+    }
 protected:
     /** Called when a global save game as been loaded */
     void HandleSaveGameLoaded(URPGSaveGame* NewSaveGame);
