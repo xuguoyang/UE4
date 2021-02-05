@@ -28,6 +28,7 @@ void ARPGPlayerStateBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &
 
 void ARPGPlayerStateBase::OnRep_SelectedRole()
 {
-
+	//玩家选的角色发生变化通知蓝图
+	DelegateRoleSelected.Broadcast(this);
 }
 

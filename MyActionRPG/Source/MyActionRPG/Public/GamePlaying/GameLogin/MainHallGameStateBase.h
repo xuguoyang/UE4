@@ -6,7 +6,6 @@
 #include "GameFramework/GameState.h"
 #include "WeakObjectPtrTemplates.h"
 #include "RPGPlayerSeats.h"
-#include "DelegateCombinations.h"
 #include "ObjectMacros.h"
 #include "MainHallGameStateBase.generated.h"
 
@@ -25,7 +24,9 @@ enum EPlayerIndex:int8
     EPlayer_Max,
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FJoinSuccessDelegate, APlayerController*, player);
+
+//倒计时改变
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGameCountDownChangedDelegate);
 
 UCLASS()
 class MYACTIONRPG_API AMainHallGameStateBase : public AGameState
@@ -33,8 +34,8 @@ class MYACTIONRPG_API AMainHallGameStateBase : public AGameState
 	GENERATED_BODY()
 public:
     // 游戏启动倒计时
-	UPROPERTY(ReplicatedUsing = OnRep_CountDown)
-    int16  m_CountDown;
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CountDown)
+    int32  m_CountDown;
 
     /** 玩家座位对象*/
     UPROPERTY(BlueprintReadOnly, Replicated)
@@ -56,11 +57,10 @@ public:
     // 玩家是否可以加入
     bool CanJion(APlayerController* player);
 
-	void JoinSuccess(OUT APlayerController* player);
-
 	UFUNCTION()
 	void OnRep_CountDown();
-	
+
+	//倒计时改变回调通知蓝图委托
 	UPROPERTY(BlueprintAssignable)
-	FJoinSuccessDelegate DelegateJoinSuccess;
+	FGameCountDownChangedDelegate DelegateOnGameCountDownChanged;
 };

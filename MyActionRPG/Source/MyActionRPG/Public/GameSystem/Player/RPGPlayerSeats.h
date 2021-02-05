@@ -4,6 +4,7 @@
 
 #include "RPGPlayerSeatDataTableRow.h"
 #include "GameFramework/Actor.h"
+#include "DelegateCombinations.h"
 #include "RPGPlayerSeats.generated.h"
 
 USTRUCT(BlueprintType)
@@ -17,7 +18,7 @@ struct FPlayerSeat
     UPROPERTY()
     int8 nPlayerIndex;                  // 玩家索引
 
-    UPROPERTY()                         // 当前玩家对象
+    UPROPERTY(BlueprintReadOnly)                         // 当前玩家对象
     class ARPGPlayerStateBase* pPlayer;
 
     void RestSeat()
@@ -30,6 +31,9 @@ struct FPlayerSeat
 
 	}
 };
+
+//玩家队列改变
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPlayerArrayChangedDelegate);
 
 UCLASS()
 class MYACTIONRPG_API ARPGPlayerSeats : public AActor
@@ -58,6 +62,11 @@ public:
     FPlayerSeat& GetEmptySeat();
 
     bool HasEmptySeat();
+
+	//玩家队列改变回调通知蓝图委托
+	UPROPERTY(BlueprintAssignable)
+	FPlayerArrayChangedDelegate DelegateOnPlayerArrayChanged;
+
 protected:
     UFUNCTION()
     void OnRep_PlayerArray();

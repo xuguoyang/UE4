@@ -337,8 +337,6 @@ void ARPGPlayerControllerBase::LoginSucceed_Implementation()
 
     }
 
-
-	//OnLoginSuccessDelegate.Broadcast();
 }
 
 void ARPGPlayerControllerBase::HandleSaveGameLoaded(URPGSaveGame* NewSaveGame)

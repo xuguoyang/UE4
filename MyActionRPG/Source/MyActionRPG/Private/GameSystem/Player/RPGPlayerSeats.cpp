@@ -105,7 +105,8 @@ bool ARPGPlayerSeats::HasEmptySeat()
 
 void ARPGPlayerSeats::OnRep_PlayerArray()
 {
-   
+	//玩家队列发生改变通知蓝图
+	DelegateOnPlayerArrayChanged.Broadcast();
 }
 
 void ARPGPlayerSeats::Destroyed()

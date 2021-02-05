@@ -8,13 +8,14 @@
 #include "RPGAbilityTypes.h"
 #include "GameplayAbilityTypes.h"
 #include "GameplayEffectTypes.h"
+#include "ShortcutUseInterface.h"
 #include "RPGGameplayAbility.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class MYACTIONRPG_API URPGGameplayAbility : public UGameplayAbility
+class MYACTIONRPG_API URPGGameplayAbility : public UGameplayAbility, public IShortcutUseInterface
 {
 	GENERATED_BODY()
 public:
@@ -39,4 +40,9 @@ public:
     /** 执行之前已经创建好的ContainerSpec, 在这里是真正执行技能效果*/
     UFUNCTION(BlueprintCallable, Category = Ability)
     virtual TArray<FActiveGameplayEffectHandle> ApplyEffectContainerSpec(const FRPGGameplayEffectContainerSpec& ContainerSpec);
+
+    virtual bool ShortcutUse() override;
+    virtual bool OnAddShortcut() override;
+    virtual bool OnRemoveShortcut() override;
+    virtual EShortcutType GetType() override;
 };

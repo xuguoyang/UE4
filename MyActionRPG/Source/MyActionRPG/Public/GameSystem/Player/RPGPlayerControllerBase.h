@@ -5,10 +5,8 @@
 #include "GameFramework/PlayerController.h"
 #include "RPGInventoryInterface.h"
 #include "RPGPotionItem.h"
-#include "DelegateCombinations.h"
 #include "RPGPlayerControllerBase.generated.h"
 
-//DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDelegateLoginSuccess);
 /**
  * 
  */
@@ -128,8 +126,6 @@ public:
         return OnInventoryLoadedNative;
     }
 
-	//UPROPERTY(BlueprintAssignable)
-	//FDelegateLoginSuccess OnLoginSuccessDelegate;
 
 // 服务器向客户端发送的RPC
 public:
@@ -138,7 +134,7 @@ public:
 
 // 客户端向服务器发送消息
 public:
-    UFUNCTION(Server, Reliable)
+    UFUNCTION(Server, Reliable, BlueprintCallable)
     void SelectRole(const FName& RoleName);
 
 protected:

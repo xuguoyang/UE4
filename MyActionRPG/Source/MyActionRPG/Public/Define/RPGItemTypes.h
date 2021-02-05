@@ -6,6 +6,7 @@
 #include "Engine/EngineTypes.h"
 #include "RPGItemTypes.generated.h"
 
+// 道具类型
 UENUM(BlueprintType)
 enum class EItemType : uint8
 {
@@ -13,6 +14,7 @@ enum class EItemType : uint8
     ItemType_Task,
 };
 
+// 装备类型
 UENUM(BlueprintType)
 enum class EItemEquipType : uint8
 {
@@ -25,51 +27,13 @@ enum class EItemEquipType : uint8
     ItemEquipType_Foot,         // 脚步装备
 };
 
-USTRUCT(BlueprintType)
-struct FItemGird
+// 快捷栏类型
+UENUM(BlueprintType)
+enum class EShortcutType: uint8
 {
-    GENERATED_USTRUCT_BODY()
-
-    FItemGird() :Item(nullptr) {}
-
-    UPROPERTY()
-    uint32 Index;                   // 索引
-
-    UPROPERTY()
-    class UItemBase* Item;          // 当前道具
-
-    bool IsEmpty()
-    {
-        return Item == nullptr;
-    }
-
-    void Reset()
-    {
-        Item = nullptr;
-    }
-};
-
-USTRUCT(BlueprintType)
-struct FEquipGird
-{
-    GENERATED_USTRUCT_BODY()
-
-    FEquipGird() :Item(nullptr) {}
-
-    UPROPERTY(EditAnywhere)
-    EItemEquipType Type;                   // 当前位置装备类型
-
-    UPROPERTY()
-    class UItemBase* Item;                 // 当前道具
-
-    bool IsEmpty()
-    {
-        return Item == nullptr;
-    }
-
-    void Reset()
-    {
-        Item = nullptr;
-    }
+    ShortcutGirdType_None,
+    ShortcutGirdType_Item,
+    ShortcutGirdType_Skill,
+    ShortcutGirdType_WeaponSkill
 };
 

@@ -10,6 +10,31 @@
 
 class UItemBase;
 
+// 背包格子
+USTRUCT(BlueprintType)
+struct FItemGird
+{
+    GENERATED_USTRUCT_BODY()
+
+    FItemGird() :Item(nullptr) {}
+
+    UPROPERTY()
+    uint32 Index;                   // 索引
+
+    UPROPERTY()
+    class UItemBase* Item;          // 当前道具
+
+    bool IsEmpty()
+    {
+        return Item == nullptr;
+    }
+
+    void Reset()
+    {
+        Item = nullptr;
+    }
+};
+
 UCLASS( ClassGroup=(Custom), Blueprintable, meta=(BlueprintSpawnableComponent) )
 class MYACTIONRPG_API UItemContainerComponent : public UActorComponent
 {
@@ -26,13 +51,13 @@ public:
 public:
     /**客户端发送请求移除某个道具的RPC*/
     UFUNCTION(Server, Reliable, BlueprintCallable)
-    void ClientRequestRemoveItemByObj(UItemBase* Item);
+    void ServerRemoveItemByObj(UItemBase* Item);
 
     UFUNCTION(Server, Reliable, BlueprintCallable)
-    void ClientRequestRemoveItemByGird(int32 GirdIndex);
+    void ServerRemoveItemByGird(int32 GirdIndex);
 
     UFUNCTION(Server, Reliable, BlueprintCallable)
-    void ClientRequestRemoveItemByItemID(const FName& ItemID);
+    void ServerRemoveItemByItemID(const FName& ItemID);
 
 public:
     /** 添加道具，直接创建添加到容器中*/ 
@@ -41,7 +66,7 @@ public:
 
     /** 添加道具，通过道具指针*/ 
     UFUNCTION(BlueprintCallable, Category = ITEM)
-    bool AddItemByObj(UItemBase* Item);
+    int32 AddItemByObj(UItemBase* Item);
 
     /** 删除道具，通过索引*/
     UFUNCTION(BlueprintCallable, Category = ITEM)

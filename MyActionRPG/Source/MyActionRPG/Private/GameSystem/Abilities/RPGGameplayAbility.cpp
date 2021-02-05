@@ -74,3 +74,44 @@ TArray<FActiveGameplayEffectHandle> URPGGameplayAbility::ApplyEffectContainerSpe
 
     return AllActiveEffects;
 }
+
+bool URPGGameplayAbility::ShortcutUse()
+{
+    UAbilitySystemComponent* AbilitySystemComponent = GetAbilitySystemComponentFromActorInfo();
+    if (AbilitySystemComponent)
+    {
+        return AbilitySystemComponent->TryActivateAbility(BindAbilitySpecHandle);
+    }
+
+    return false;
+}
+
+bool URPGGameplayAbility::OnAddShortcut()
+{
+    UAbilitySystemComponent* AbilitySystemComponent = GetAbilitySystemComponentFromActorInfo();
+    if (AbilitySystemComponent)
+    {
+        BindAbilitySpecHandle = AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(this->GetClass()));
+
+        return BindAbilitySpecHandle.IsValid();
+    }
+
+    return false;
+}
+
+bool URPGGameplayAbility::OnRemoveShortcut()
+{
+    UAbilitySystemComponent* AbilitySystemComponent = GetAbilitySystemComponentFromActorInfo();
+    if (AbilitySystemComponent)
+    {
+        AbilitySystemComponent->ClearAbility(BindAbilitySpecHandle);
+        return true;
+    }
+
+    return false;
+}
+
+EShortcutType URPGGameplayAbility::GetType()
+{
+    return EShortcutType::ShortcutGirdType_Skill;
+}

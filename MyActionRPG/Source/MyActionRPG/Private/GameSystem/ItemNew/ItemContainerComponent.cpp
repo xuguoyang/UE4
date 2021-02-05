@@ -33,17 +33,17 @@ void UItemContainerComponent::InitCapacity(int32 nCapacity)
     }
 }
 
-void UItemContainerComponent::ClientRequestRemoveItemByObj_Implementation(UItemBase* Item)
+void UItemContainerComponent::ServerRemoveItemByObj_Implementation(UItemBase* Item)
 {
     RemoveItemByObj(Item);
 }
 
-void UItemContainerComponent::ClientRequestRemoveItemByGird_Implementation(int32 GirdIndex)
+void UItemContainerComponent::ServerRemoveItemByGird_Implementation(int32 GirdIndex)
 {
     RemoveItemByGird(GirdIndex);
 }
 
-void UItemContainerComponent::ClientRequestRemoveItemByItemID_Implementation(const FName& ItemID)
+void UItemContainerComponent::ServerRemoveItemByItemID_Implementation(const FName& ItemID)
 {
     RemoveItemByItemID(ItemID);
 }
@@ -51,7 +51,7 @@ void UItemContainerComponent::ClientRequestRemoveItemByItemID_Implementation(con
 UItemBase* UItemContainerComponent::AddItemByItemID(const FName& ItemID)
 {
     UItemBase* Item = CreateNewItem(ItemID);
-    if (AddItemByObj(Item))
+    if (AddItemByObj(Item) >= 0)
     {
         return Item;
     }
@@ -59,7 +59,7 @@ UItemBase* UItemContainerComponent::AddItemByItemID(const FName& ItemID)
     return nullptr;
 }
 
-bool UItemContainerComponent::AddItemByObj(UItemBase* Item)
+int32 UItemContainerComponent::AddItemByObj(UItemBase* Item)
 {
     if (Item == nullptr)
     {
@@ -72,13 +72,21 @@ bool UItemContainerComponent::AddItemByObj(UItemBase* Item)
         return false;
     }
 
-    ItemArray[EmptyGirds[0]].Item = Item;
-    return true;
+    int32 Index = EmptyGirds[0];
+    ItemArray[Index].Item = Item;
+    Item->OnAdd(this);
+
+    return Index;
 }
 
 bool UItemContainerComponent::RemoveItemByGird(int32 Index)
 {
     if (!IsIndexVaild(Index))
+    {
+        return false;
+    }
+
+    if (ItemArray[Index].Item == nullptr)
     {
         return false;
     }
@@ -159,9 +167,6 @@ void UItemContainerComponent::BeginPlay()
     if (GetWorld()->GetNetMode() != ENetMode::NM_Client)
     {
         InitCapacity(Capacity);
-
-        // 初始化默认加几个道具
-        AddItemByItemID(TEXT("Weapon001"));
     }
 }
 
@@ -188,7 +193,7 @@ class UItemBase* UItemContainerComponent::CreateNewItem(const FName& ItemID)
         return nullptr;
     }
 
-    UItemBase* Item = NewObject<UItemBase>();
+    UItemBase* Item = NewObject<UItemBase>(this, ItemConfig->ItemObjClass);
     Item->ItemID = ItemID;
     Item->ItemConfig = ItemConfig;
 

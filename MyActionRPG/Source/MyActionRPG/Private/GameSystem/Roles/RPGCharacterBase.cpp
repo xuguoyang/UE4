@@ -163,11 +163,6 @@ void ARPGCharacterBase::GetActiveAbilitiesWithTags(FGameplayTagContainer Ability
     }
 }
 
-void ARPGCharacterBase::SetRoleAsset(URoleAssetBase* ptr)
-{
-    RoleAssetPtr = ptr;
-}
-
 void ARPGCharacterBase::OnItemSlotChanged(FRPGItemSlot ItemSlot, URPGItem* Item)
 {
     RefreshSlottedGameplayAbilities();

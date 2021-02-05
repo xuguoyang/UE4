@@ -74,18 +74,7 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Abilities")
     void GetActiveAbilitiesWithTags(FGameplayTagContainer AbilityTags, TArray<URPGGameplayAbility*>& ActiveAbilities);
 
-    void SetRoleAsset(URoleAssetBase* ptr);
 
-    template<typename T>
-    T* GetRoleAsset()
-    {
-        if (!RoleAssetPtr.IsValid())
-        {
-            return nullptr;
-        }
-
-        return Cast<T>(RoleAssetPtr.Get());
-    }
 protected:
     // 装备栏切换道具触发的回调
     void OnItemSlotChanged(FRPGItemSlot ItemSlot, URPGItem* Item);
@@ -116,20 +105,9 @@ protected:
     virtual void HandleMoveSpeedChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
 
     friend URPGAttributeSet;
-    
+
+
 protected:
-    /** 技能组件*/
-    UPROPERTY()
-    URPGAbilitySystemComponent* AbilitySystemComponent;
-
-    // 角色等级
-    UPROPERTY(EditAnywhere, Replicated, Category = Abilities)
-    int32 CharacterLevel;
-
-    /** 技能系统使用的属性集,添加为拥有技能系统组件的Actor子对象后会自动注册给技能系统*/
-    UPROPERTY()
-    URPGAttributeSet* AttributeSet;
-
     /** 玩家创建时，可以授予玩家的技能配置，可以通过tag、event等激活*/
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Abilities)
     TArray<TSubclassOf<URPGGameplayAbility>>    GameplayAbilities;
@@ -157,6 +135,19 @@ protected:
     UPROPERTY()
     int32 bAbilitiesInitialized;
 
-    // 当前actor对应的配置
-    TWeakObjectPtr<URoleAssetBase> RoleAssetPtr;
+    // 角色技能，技能，物品快捷栏
+protected:
+    /** 技能组件*/
+    UPROPERTY()
+    URPGAbilitySystemComponent* AbilitySystemComponent;
+
+    // 角色等级
+    UPROPERTY(EditAnywhere, Replicated, Category = Abilities)
+    int32 CharacterLevel;
+
+    /** 技能系统使用的属性集,添加为拥有技能系统组件的Actor子对象后会自动注册给技能系统*/
+    UPROPERTY()
+    URPGAttributeSet* AttributeSet;
+
+    // 
 };

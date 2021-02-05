@@ -8,6 +8,32 @@
 #include "ItemEquipComponent.generated.h"
 
 class UItemBase;
+
+// 装备格子
+USTRUCT(BlueprintType)
+struct FEquipGird
+{
+    GENERATED_USTRUCT_BODY()
+
+    FEquipGird() :Item(nullptr) {}
+
+    UPROPERTY(EditAnywhere)
+    EItemEquipType Type;                   // 当前位置装备类型
+
+    UPROPERTY()
+    class UItemBase* Item;                 // 当前道具
+
+    bool IsEmpty()
+    {
+        return Item == nullptr;
+    }
+
+    void Reset()
+    {
+        Item = nullptr;
+    }
+};
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MYACTIONRPG_API UItemEquipComponent : public UActorComponent
 {
@@ -42,6 +68,10 @@ private:
     UFUNCTION()
     void OnRep_EquipArrayChange();
 
+private:
+    bool LoadItemActor(UItemBase* Item);
+
+    bool DestoryItemActor(UItemBase* Item);
 private:
     /**获取某个类型所有的装备栏序号*/
     typedef TArray<uint8> OutGirdArray;

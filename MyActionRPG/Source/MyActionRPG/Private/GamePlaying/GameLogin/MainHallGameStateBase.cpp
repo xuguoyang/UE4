@@ -53,10 +53,7 @@ bool AMainHallGameStateBase::PlayerJion(APlayerController* player)
     return false;*/
 
 	bool bSuccess = PlayerSeats->PlayerJion(player);
-	if (bSuccess)
-	{
-		DelegateJoinSuccess.Broadcast(player);
-	}
+
     return bSuccess;
 }
 
@@ -81,12 +78,7 @@ bool AMainHallGameStateBase::CanJion(APlayerController* player)
     return true;
 }
 
-void AMainHallGameStateBase::JoinSuccess(OUT APlayerController* player)
-{
-	
-}
-
 void AMainHallGameStateBase::OnRep_CountDown()
 {
-
+	DelegateOnGameCountDownChanged.Broadcast();
 }

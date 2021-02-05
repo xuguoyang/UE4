@@ -22,7 +22,7 @@ bool UItemEquipComponent::EquipItem(UItemBase* Item)
         return false;
     }
 
-    // 替换当前装备
+    // 获取对应类型的装备栏
     OutGirdArray OutArrary;
     if (!GetEquipGird(Item->ItemConfig->ItemEquipType, OutArrary))
     {
@@ -44,24 +44,15 @@ bool UItemEquipComponent::EquipItem(UItemBase* Item)
     // 没有的话替换第一个位置的道具
     if (bAdd == false)
     {
+        DestoryItemActor(EquipArray[OutArrary[0]].Item);
         EquipArray[OutArrary[0]].Item = Item;
         bAdd = true;
     }
 
-    // 刷新显示
+    // 成功添加，刷新显示
     if (bAdd)
     {
-        USkeletalMeshComponent* pMesh = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
-        if (pMesh != nullptr)
-        {
-            // 创建道具对应的Actor
-            AActor* pItemActor = GetWorld()->SpawnActor(Item->ItemConfig->ItemActor);
-            if (pItemActor != nullptr)
-            {
-                FAttachmentTransformRules Rlue(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true);
-                pItemActor->AttachToComponent(pMesh, Rlue, TEXT("hand_rSocket"));
-            }
-        }
+        LoadItemActor(Item);
     }
 
     return bAdd;
@@ -128,6 +119,39 @@ void UItemEquipComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& 
 void UItemEquipComponent::OnRep_EquipArrayChange()
 {
 
+}
+
+bool UItemEquipComponent::LoadItemActor(UItemBase* Item)
+{
+    // 加载actor并绑定角色身上
+    USkeletalMeshComponent* pMesh = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
+    if (pMesh == nullptr)
+    {
+        return false;
+    }
+
+    // 创建道具对应的Actor
+    AActor* pItemActor = GetWorld()->SpawnActor(Item->ItemConfig->ItemActorClass);
+    if (pItemActor != nullptr)
+    {
+        pItemActor->AttachToComponent(pMesh, FAttachmentTransformRules::SnapToTargetNotIncludingScale, Item->ItemConfig->BindSocketName);
+        Item->ItemActor = pItemActor;
+        return true;
+    }
+
+    return false;
+}
+
+bool UItemEquipComponent::DestoryItemActor(UItemBase* Item)
+{
+    if (Item->ItemActor == nullptr || Item->ItemActor->IsPendingKill())
+    {
+        return false;
+    }
+
+    Item->ItemActor->Destroy();
+
+    return true;
 }
 
 bool UItemEquipComponent::GetEquipGird(EItemEquipType Type, OutGirdArray& OutArrary)
