@@ -20,6 +20,10 @@ protected:
     // 倒计时定时器函数
     void CountDownFuction();
 
+protected:
+    UPROPERTY(EditAnywhere, meta=(FilePathFilter = "umap"))
+    FFilePath LevelPath;
+
 private:
     virtual void PreLogin(const FString& Options, const FString& Address, const FUniqueNetIdRepl& UniqueId, FString& ErrorMessage) override;
 

@@ -106,5 +106,5 @@ void ALoginMainHallModeBase::EndCountDown()
 
     // 传送玩家到玩法场景,无缝传送
     bUseSeamlessTravel = true;
-    GetWorld()->ServerTravel(TEXT("/Game/Maps/ActionRPG_P"));
+    GetWorld()->ServerTravel(LevelPath.FilePath);
 }

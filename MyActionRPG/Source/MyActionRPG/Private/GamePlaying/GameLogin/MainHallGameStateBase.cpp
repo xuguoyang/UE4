@@ -8,7 +8,8 @@
 #include "RPGGameInstanceBase.h"
 #include "RPGPlayerSeats.h"
 
-AMainHallGameStateBase::AMainHallGameStateBase()
+AMainHallGameStateBase::AMainHallGameStateBase():
+m_CountDown(10)
 {
 }
 
@@ -23,9 +24,6 @@ void AMainHallGameStateBase::HandleBeginPlay()
 
     PlayerSeats = GetWorld()->SpawnActor<ARPGPlayerSeats>(ARPGPlayerSeats::StaticClass());
     PlayerSeats->InitPlayerSeats();
-
-    // µ¹¼ÆÊ±Ä¬ÈÏ60Ãë
-    m_CountDown = 60;
 }
 
 void AMainHallGameStateBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const

@@ -19,7 +19,13 @@ public:
     UPROPERTY(Replicated)
     class  ARPGPlayerSeats* PlayerSeats;
 
+protected:
     virtual void HandleBeginPlay() override;
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+
+    virtual void HandleMatchHasStarted() override;
+
+    UFUNCTION(BlueprintNativeEvent, Category = GameState)
+    void GameState_Started();
 };

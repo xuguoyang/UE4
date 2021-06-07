@@ -25,5 +25,5 @@ public:
 
     /**  ≈‰÷√∂‘”¶µƒactor */
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Role)
-    TSubclassOf<AActor> RoleActor;
+    TSubclassOf<ARPGCharacterBase> RoleActor;
 };

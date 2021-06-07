@@ -19,25 +19,6 @@ AMyActionRPGGameModeBase::AMyActionRPGGameModeBase()
     PlayerControllerClass = ARPGPlayerControllerBase::StaticClass();
 }
 
-bool AMyActionRPGGameModeBase::SpawnControlCharacter(APlayerController* PlayerController, const FName& AssetName)
-{
-    URPGGameInstanceBase* pGameInstance = GetGameInstance<URPGGameInstanceBase>();
-    if (pGameInstance == nullptr)
-    {
-        return false;
-    }
-
-    UControlRole* pAssetRole = pGameInstance->GetAssetRole(AssetName);
-    if (pAssetRole == nullptr)
-    {
-        return false;
-    }
-
-    //GetWorld()->SpawnActor(pAssetRole->RoleActor.Class);
-    
-    return true;
-}
-
 void AMyActionRPGGameModeBase::StartPlay()
 {
     Super::StartPlay();

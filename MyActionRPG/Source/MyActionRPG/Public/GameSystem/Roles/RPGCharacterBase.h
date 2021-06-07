@@ -4,10 +4,8 @@
 #include "RPGType.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
-#include "Abilities/RPGGameplayAbility.h"
+#include "RPGGameplayAbility.h"
 #include "GameplayAbilitySpec.h"
-#include "RPGInventoryInterface.h"
-#include "RoleAssetBase.h"
 #include "RPGCharacterBase.generated.h"
 
 class URPGAbilitySystemComponent;
@@ -24,6 +22,7 @@ public:
     virtual void PossessedBy(AController* NewController) override;
     virtual void UnPossessed() override;
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    virtual void BeginPlay() override;
 
     UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
@@ -57,89 +56,40 @@ public:
 
     UFUNCTION(BlueprintCallable)
     virtual bool SetCharacterLevel(int32 NewLevel);
+   
+    /** 获取角色当前使用的武器*/
+    UFUNCTION(BlueprintPure, Category = Equip)
+    AActor* GetWeaponActor();
 
-    /** 释放一个装备好的技能*/
-    UFUNCTION(BlueprintCallable, Category = "Abilities")
-    bool ActivateAbilitiesWithItemSlot(FRPGItemSlot ItemSlot, bool bAllowRemoteActivation = true);
+    /** 是否存活*/
+    UFUNCTION(BlueprintPure)
+    bool IsAlive();
 
-    /** 获取装备好的技能列表*/
-    UFUNCTION(BlueprintCallable, Category = "Abilities")
-    void GetActiveAbilitiesWithItemSlot(FRPGItemSlot ItemSlot, TArray<URPGGameplayAbility*>& ActiveAbilities);
+    /** 死亡*/
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+    void DelayDeath();
 
-    /** 根据tag激活技能*/
-    UFUNCTION(BlueprintCallable, Category = "Abilities")
-    bool ActivateAbilitiesWithTags(FGameplayTagContainer AbilityTags, bool bAllowRemoteActivation = true);
+// 向服务器发消息
+public:
+    UFUNCTION(Server, Reliable, BlueprintCallable, WithValidation)
+    void ServerEquipItem(UItemBase* Item);
 
-    /** 根据tag获取当前激活的技能*/
-    UFUNCTION(BlueprintCallable, Category = "Abilities")
-    void GetActiveAbilitiesWithTags(FGameplayTagContainer AbilityTags, TArray<URPGGameplayAbility*>& ActiveAbilities);
+// 向客户端发消息
+public:
 
-
-protected:
-    // 装备栏切换道具触发的回调
-    void OnItemSlotChanged(FRPGItemSlot ItemSlot, URPGItem* Item);
-    void RefreshSlottedGameplayAbilities();
-
-    // 添加玩家技能列表
-    void AddStartupGameplayAbilities();
-
-    // 添加装备栏中的技能
-    void AddSlottedGameplayAbilities();
-    void FillSlottedAbilitySpecs(TMap<FRPGItemSlot, FGameplayAbilitySpec>& SlottedAbilitySpecs);
-
-    UFUNCTION(BlueprintImplementableEvent)
-    void OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ARPGCharacterBase* InstigatorCharacter, AActor* DamageCauser);
-
-    UFUNCTION(BlueprintImplementableEvent)
-    void OnHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-
-    UFUNCTION(BlueprintImplementableEvent)
-    void OnManaChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-
-    UFUNCTION(BlueprintImplementableEvent)
-    void OnMoveSpeedChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-
-    virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ARPGCharacterBase* InstigatorCharacter, AActor* DamageCauser);
-    virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-    virtual void HandleManaChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-    virtual void HandleMoveSpeedChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-
-    friend URPGAttributeSet;
-
-
-protected:
-    /** 玩家创建时，可以授予玩家的技能配置，可以通过tag、event等激活*/
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Abilities)
-    TArray<TSubclassOf<URPGGameplayAbility>>    GameplayAbilities;
-
-    /** 技能装备栏对应的技能配置，跟装备栏绑定*/
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Abilities)
-    TMap<FRPGItemSlot, TSubclassOf<URPGGameplayAbility>> DefaultSlottedAbilities;
-
-    /** 装备栏中装备的技能对象列表*/
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Inventory)
-    TMap<FRPGItemSlot, FGameplayAbilitySpecHandle> SlottedAbilities;
-
-    /** 角色创建时添加被动技能*/
-    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Abilities)
-    TArray<TSubclassOf<UGameplayEffect>> PassiveGameplayEffects;
-
-    // 装备更新的回调代理对象句柄
-    FDelegateHandle InventoryUpdateHandle;
-    FDelegateHandle InventoryLoadedHandle;
-
-    /**获取角色当前装备栏数据的接口 */
-    UPROPERTY()
-    TScriptInterface<IRPGInventoryInterface> InventorySource;
-
-    UPROPERTY()
-    int32 bAbilitiesInitialized;
-
-    // 角色技能，技能，物品快捷栏
-protected:
+    // 角色技能，物品快捷栏
+public:
     /** 技能组件*/
-    UPROPERTY()
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     URPGAbilitySystemComponent* AbilitySystemComponent;
+
+    /** 装备栏组件*/
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    class UItemEquipComponent* EquipComponent;
+
+    /** 技能快捷栏组件*/
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    class UShortcutComponent* ShortcutComponent;
 
     // 角色等级
     UPROPERTY(EditAnywhere, Replicated, Category = Abilities)
@@ -149,5 +99,18 @@ protected:
     UPROPERTY()
     URPGAttributeSet* AttributeSet;
 
-    // 
+    
+protected:
+    /**导出处理伤害的蓝图事件*/
+    UFUNCTION(BlueprintImplementableEvent)
+    void OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ARPGCharacterBase* InstigatorCharacter, AActor* DamageCauser);
+
+    /**导出生命值发生改变的蓝图事件*/
+    UFUNCTION(BlueprintImplementableEvent)
+    void OnHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
+
+    virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ARPGCharacterBase* InstigatorCharacter, AActor* DamageCauser);
+    virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
+
+    friend URPGAttributeSet;
 };

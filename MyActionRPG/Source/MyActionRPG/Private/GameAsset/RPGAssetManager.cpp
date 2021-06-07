@@ -2,7 +2,6 @@
 
 
 #include "RPGAssetManager.h"
-#include "Items/RPGItem.h"
 #include "AbilitySystemGlobals.h"
 #include "RPGGameInstanceBase.h"
 #include "TableAssetCommon.h"
@@ -36,19 +35,6 @@ URPGAssetManager& URPGAssetManager::Get()
         UE_LOG(LogActionRPG, Fatal, TEXT("Invalid AssetManager in DefaultEngine.ini, must be RPGAssetManager!"));
         return *NewObject<URPGAssetManager>();
     }
-}
-
-URPGItem* URPGAssetManager::ForceLoadItem(const FPrimaryAssetId& PrimaryAssetId, bool bLogWarning /*= true*/)
-{
-    FSoftObjectPath ItemPath = GetPrimaryAssetPath(PrimaryAssetId);
-
-    URPGItem* LoadedItem = Cast<URPGItem>(ItemPath.TryLoad());
-    if (bLogWarning && LoadedItem == nullptr)
-    {
-        UE_LOG(LogActionRPG, Warning, TEXT("Failed to load item for identifier %s!"), *PrimaryAssetId.ToString());
-    }
-
-    return LoadedItem;
 }
 
 void URPGAssetManager::LoadAllDataTableAsset()

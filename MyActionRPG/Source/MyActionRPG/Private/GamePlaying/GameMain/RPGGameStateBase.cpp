@@ -20,3 +20,15 @@ void ARPGGameStateBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &Ou
 
     DOREPLIFETIME(ARPGGameStateBase, PlayerSeats);
 }
+
+void ARPGGameStateBase::HandleMatchHasStarted()
+{
+    Super::HandleMatchHasStarted();
+
+    GameState_Started();
+}
+
+void ARPGGameStateBase::GameState_Started_Implementation()
+{
+
+}

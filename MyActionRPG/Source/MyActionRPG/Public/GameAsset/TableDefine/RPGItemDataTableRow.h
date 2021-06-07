@@ -1,11 +1,10 @@
 #pragma once
-#include "MyActionRPG.h"
 #include "Engine/DataTable.h"
 #include "GameFramework/Actor.h"
 #include "SlateBrush.h"
 #include "Define/RPGItemTypes.h"
 #include "ItemActorBase.h"
-#include "GameSystem/ItemNew/ItemBase.h"
+#include "ItemBase.h"
 #include "RPGItemDataTableRow.generated.h"
 
 USTRUCT(BlueprintType)
@@ -51,4 +50,8 @@ public:
     /** 道具附带的技能*/
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ITEM)
     TSubclassOf<URPGGameplayAbility> AbilityClass;
+
+	/**  用来显示的icon路径 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ITEM)
+	FSoftObjectPath IconPath;
 };

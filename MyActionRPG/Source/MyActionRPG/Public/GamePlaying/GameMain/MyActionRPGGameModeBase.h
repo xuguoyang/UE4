@@ -15,10 +15,6 @@ class MYACTIONRPG_API AMyActionRPGGameModeBase : public AGameMode
 public:
     AMyActionRPGGameModeBase();
 
-    /**根据AssetName创建Actor*/
-    UFUNCTION(BlueprintCallable, Category = Init)
-    bool SpawnControlCharacter(APlayerController* PlayerController, const FName& AssetName);
-
 protected:
     virtual void StartPlay() override;
 

@@ -29,8 +29,6 @@ public:
     /** 获取当前AssetManager对象 */
     static URPGAssetManager& Get();
 
-    /** 加载道具，返回道具对象指针 */
-    URPGItem* ForceLoadItem(const FPrimaryAssetId& PrimaryAssetId, bool bLogWarning = true);
 
     /** 加载所有DataTable*/
     void LoadAllDataTableAsset();
