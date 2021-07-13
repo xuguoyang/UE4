@@ -21,7 +21,7 @@ protected:
     void CountDownFuction();
 
 protected:
-    UPROPERTY(EditAnywhere, meta=(FilePathFilter = "umap"))
+    UPROPERTY(EditAnywhere, meta=(FilePathFilter = "umap", LongPackageName))
     FFilePath LevelPath;
 
 private:
