@@ -8,7 +8,9 @@ public class MyActionRPGEditorTarget : TargetRules
 	public MyActionRPGEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
+        //BuildEnvironment = TargetBuildEnvironment.Shared;
+        DefaultBuildSettings = BuildSettingsVersion.V2;
 
-		ExtraModuleNames.AddRange( new string[] { "MyActionRPG" } );
+        ExtraModuleNames.AddRange( new string[] { "MyActionRPG" } );
 	}
 }

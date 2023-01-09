@@ -11,10 +11,11 @@ public class ActionRPGLoadingScreen : ModuleRules
 	{
 		PrivatePCHHeaderFile = "Public/ActionRPGLoadingScreen.h";
 
-		PCHUsage = PCHUsageMode.UseSharedPCHs;
+		//PCHUsage = PCHUsageMode.UseSharedPCHs;
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PrivateIncludePaths.Add("ActionRPGLoadingScreen/Private");
-
+		bEnableUndefinedIdentifierWarnings = false;
 		PublicDependencyModuleNames.AddRange(
 			new string[] {
 				"Core",

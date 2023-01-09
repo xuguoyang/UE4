@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGAttributeSet.h"
-#include "GameplayEffect.h"
-#include "GameplayEffectExtension.h"
-#include "AbilitySystemComponent.h"
-#include "RPGCharacterBase.h"
-#include "GameFramework/Controller.h"
+#include "GameSystem/Abilities/Attribute/RPGAttributeSet.h"
+#include <GameplayEffect.h>
+#include <GameplayEffectExtension.h>
+#include <AbilitySystemComponent.h>
+#include "GameSystem/Roles/RPGCharacterBase.h"
+#include <GameFramework/Controller.h>
 
 void URPGAttributeSet::BindFuctions()
 {

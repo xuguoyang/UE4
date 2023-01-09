@@ -1,10 +1,10 @@
 #pragma once
-#include "Engine/DataTable.h"
-#include "GameFramework/Actor.h"
-#include "SlateBrush.h"
+#include <Engine/DataTable.h>
+#include <GameFramework/Actor.h>
+#include <Styling/SlateBrush.h>
 #include "Define/RPGItemTypes.h"
-#include "ItemActorBase.h"
-#include "ItemBase.h"
+#include "GameSystem/Item/ItemActorBase.h"
+#include "GameSystem/Item/ItemBase.h"
 #include "RPGItemDataTableRow.generated.h"
 
 USTRUCT(BlueprintType)

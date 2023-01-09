@@ -1,5 +1,5 @@
 #pragma once
-#include "GameStageBase.h"
+#include "GamePlaying/GameClientStage/GameStageBase.h"
 
 class GameStageLogin: public GameStageBase
 {

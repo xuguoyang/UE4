@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
 #include "GameplayAbilitySpec.h"
-#include "RPGItemTypes.h"
+#include "Define/RPGItemTypes.h"
 #include "ShortcutUseInterface.generated.h"
 
 // This class does not need to be modified.

@@ -7,8 +7,9 @@ public class MyActionRPG : ModuleRules
 	public MyActionRPG(ReadOnlyTargetRules Target) : base(Target)
 	{
         PrivatePCHHeaderFile = "Public/MyActionRPG.h";
-
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        bEnableUndefinedIdentifierWarnings = false;
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "OnlineSubsystem", "OnlineSubsystemUtils" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {
                 "ActionRPGLoadingScreen",

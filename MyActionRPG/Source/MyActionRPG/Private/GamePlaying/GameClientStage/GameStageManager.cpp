@@ -1,7 +1,7 @@
-#include "GameStageManager.h"
-#include "GameStageLogin.h"
-#include "GameStageSelect.h"
-#include "GameStagePlaying.h"
+#include "GamePlaying/GameClientStage/GameStageManager.h"
+#include "GamePlaying/GameClientStage/GameStageLogin.h"
+#include "GamePlaying/GameClientStage/GameStageSelect.h"
+#include "GamePlaying/GameClientStage/GameStagePlaying.h"
 
 GameStageManage::GameStageManage():
     m_eStage(EGameStageBase::EStage_None)

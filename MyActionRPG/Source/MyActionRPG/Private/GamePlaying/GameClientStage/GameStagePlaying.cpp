@@ -1,4 +1,4 @@
-#include "GameStagePlaying.h"
+#include "GamePlaying/GameClientStage/GameStagePlaying.h"
 
 GameStagePlaying::GameStagePlaying()
 {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine/DataAsset.h"
-#include "Styling/SlateBrush.h"
-#include "RPGAssetManager.h"
+#include <Engine/DataAsset.h>
+#include <Styling/SlateBrush.h>
+#include "GameAsset/RPGAssetManager.h"
 #include "TableAssetBase.generated.h"
 
 

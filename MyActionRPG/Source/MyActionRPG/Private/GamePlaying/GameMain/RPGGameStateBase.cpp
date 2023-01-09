@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGGameStateBase.h"
+#include "GamePlaying/GameMain/RPGGameStateBase.h"
 #include "RPGGameInstanceBase.h"
 
 void ARPGGameStateBase::HandleBeginPlay()

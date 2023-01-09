@@ -4,7 +4,7 @@
 
 #include "RPGType.h"
 #include "Engine/GameInstance.h"
-#include "RPGCharacterBase.h"
+#include "GameSystem/Roles/RPGCharacterBase.h"
 #include "RPGGameInstanceBase.generated.h"
 
 

@@ -2,9 +2,9 @@
 
 
 #include "RPGGameInstanceBase.h"
-#include "GameStageManager.h"
-#include "RPGAssetManager.h"
-#include "RPGPlayerSeats.h"
+#include "GamePlaying/GameClientStage/GameStageManager.h"
+#include "GameAsset/RPGAssetManager.h"
+#include "GameSystem/Player/RPGPlayerSeats.h"
 
 URPGGameInstanceBase::URPGGameInstanceBase()
 {

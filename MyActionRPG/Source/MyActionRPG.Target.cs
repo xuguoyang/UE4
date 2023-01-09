@@ -9,6 +9,8 @@ public class MyActionRPGTarget : TargetRules
 	{
 		Type = TargetType.Game;
 
-		ExtraModuleNames.AddRange( new string[] { "MyActionRPG" } );
+        DefaultBuildSettings = BuildSettingsVersion.V2;
+
+        ExtraModuleNames.AddRange( new string[] { "MyActionRPG" } );
 	}
 }

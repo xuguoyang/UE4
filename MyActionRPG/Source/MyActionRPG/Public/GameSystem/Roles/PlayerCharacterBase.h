@@ -19,4 +19,8 @@ public:
     virtual void PossessedBy(AController* NewController) override;
     virtual void UnPossessed() override;
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+public:
+	UPROPERTY(SaveGame, VisibleAnywhere, BlueprintReadOnly)
+	class UGridContainerComponent* GridContainerComponent;
 };

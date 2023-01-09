@@ -1,9 +1,9 @@
 #pragma once
 
 #include "MyActionRPG.h"
-#include "Engine/DataTable.h"
-#include "Vector.h"
-#include "GameFramework/Actor.h"
+#include <Engine/DataTable.h>
+#include <Chaos/Vector.h>
+#include <GameFramework/Actor.h>
 #include "RPGPlayerSeatDataTableRow.generated.h"
 
 

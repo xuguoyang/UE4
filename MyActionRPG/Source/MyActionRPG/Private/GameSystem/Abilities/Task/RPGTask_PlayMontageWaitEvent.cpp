@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGTask_PlayMontageWaitEvent.h"
-#include "AbilitySystemGlobals.h"
-#include "AbilitySystemComponent.h"
-#include "RPGAbilitySystemComponent.h"
-#include "Animation/AnimInstance.h"
+#include "GameSystem/Abilities/Task/RPGTask_PlayMontageWaitEvent.h"
+#include <AbilitySystemGlobals.h>
+#include <AbilitySystemComponent.h>
+#include "GameSystem/Abilities/RPGAbilitySystemComponent.h"
+#include <Animation/AnimInstance.h>
 
 
 URPGTask_PlayMontageWaitEvent::URPGTask_PlayMontageWaitEvent(const FObjectInitializer& ObjectInitializer) :
@@ -56,8 +56,8 @@ void URPGTask_PlayMontageWaitEvent::Activate()
 
                 // 设置主玩家根动画缩放
                 ACharacter* Character = Cast<ACharacter>(GetAvatarActor());
-                if (Character && (Character->Role == ROLE_Authority || 
-                    (Character->Role == ROLE_AutonomousProxy && Ability->GetNetExecutionPolicy() == EGameplayAbilityNetExecutionPolicy::LocalPredicted)))
+                if (Character && (Character->GetLocalRole() == ROLE_Authority || 
+                    (Character->GetLocalRole() == ROLE_AutonomousProxy && Ability->GetNetExecutionPolicy() == EGameplayAbilityNetExecutionPolicy::LocalPredicted)))
                 {
                     Character->SetAnimRootMotionTranslationScale(AnimRootMotionTranslationScale);
                 }
@@ -207,8 +207,8 @@ void URPGTask_PlayMontageWaitEvent::OnMontageBlendingOut(UAnimMontage* Montage, 
             AbilitySystemComponent->ClearAnimatingAbility(Ability);
 
             ACharacter* Character = Cast<ACharacter>(GetAvatarActor());
-            if (Character && (Character->Role == ROLE_Authority ||
-                (Character->Role == ROLE_AutonomousProxy && Ability->GetNetExecutionPolicy() == EGameplayAbilityNetExecutionPolicy::LocalPredicted)))
+            if (Character && (Character->GetLocalRole() == ROLE_Authority ||
+                (Character->GetLocalRole() == ROLE_AutonomousProxy && Ability->GetNetExecutionPolicy() == EGameplayAbilityNetExecutionPolicy::LocalPredicted)))
             {
                 Character->SetAnimRootMotionTranslationScale(1.f);
             }

@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ItemBase.h"
-#include "ItemContainerComponent.h"
+#include "GameSystem/Item/ItemBase.h"
+#include "GameSystem/Item/Component/ItemContainerComponent.h"
 
 UItemBase::UItemBase():
 ItemLevel(0),

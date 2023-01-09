@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "TableAssetBase.h"
+#include "GameAsset/TableDataAsset/TableAssetBase.h"
 
 
 FPrimaryAssetId UTableAssetBase::GetPrimaryAssetId() const

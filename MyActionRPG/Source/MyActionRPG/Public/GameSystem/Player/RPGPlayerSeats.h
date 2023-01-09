@@ -2,9 +2,8 @@
 
 #pragma once
 
-#include "RPGPlayerSeatDataTableRow.h"
+#include "GameAsset/TableDefine/RPGPlayerSeatDataTableRow.h"
 #include "GameFramework/Actor.h"
-#include "DelegateCombinations.h"
 #include "RPGPlayerSeats.generated.h"
 
 USTRUCT(BlueprintType)

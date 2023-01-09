@@ -1,15 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyActionRPGGameModeBase.h"
-#include "RPGPlayerControllerBase.h"
-#include "RPGGameStateBase.h"
+#include "GamePlaying/GameMain/MyActionRPGGameModeBase.h"
+#include "GameSystem/Player/RPGPlayerControllerBase.h"
+#include "GamePlaying/GameMain/RPGGameStateBase.h"
 #include "RPGGameInstanceBase.h"
-#include "GameFramework/PlayerController.h"
-#include "GameFramework/PlayerStart.h"
-#include "RPGRoleDataTableRow.h"
-#include "RPGPlayerSeatDataTableRow.h"
-#include "RPGPlayerStateBase.h"
+#include <GameFramework/PlayerController.h>
+#include <GameFramework/PlayerStart.h>
+#include "GameAsset/TableDefine/RPGRoleDataTableRow.h"
+#include "GameAsset/TableDefine/RPGPlayerSeatDataTableRow.h"
+#include "GameSystem/Player/RPGPlayerStateBase.h"
 
 AMyActionRPGGameModeBase::AMyActionRPGGameModeBase()
 {

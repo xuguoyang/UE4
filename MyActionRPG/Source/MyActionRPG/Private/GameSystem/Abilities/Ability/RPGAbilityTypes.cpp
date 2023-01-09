@@ -1,4 +1,4 @@
-#include "RPGAbilityTypes.h"
+#include "GameSystem/Abilities/Ability/RPGAbilityTypes.h"
 
 bool FRPGGameplayEffectContainerSpec::HasValidEffects() const
 {

@@ -9,6 +9,8 @@ public class MyActionRPGServerTarget : TargetRules
 	{
 		Type = TargetType.Server;
 
-		ExtraModuleNames.AddRange( new string[] { "MyActionRPG" } );
+        DefaultBuildSettings = BuildSettingsVersion.V2;
+
+        ExtraModuleNames.AddRange( new string[] { "MyActionRPG" } );
 	}
 }

@@ -4,8 +4,7 @@
 
 #include "RPGType.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "RPGItemDataTableRow.h"
-#include "ItemBase.h"
+#include "GameAsset/TableDefine/RPGItemDataTableRow.h"
 #include "RPGBlueprintLibrary.generated.h"
 
 /**

@@ -1,11 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGAssetManager.h"
-#include "AbilitySystemGlobals.h"
+#include "GameAsset/RPGAssetManager.h"
+#include <AbilitySystemGlobals.h>
 #include "RPGGameInstanceBase.h"
-#include "TableAssetCommon.h"
-#include "RPGPlayerSeatDataTableRow.h"
+#include "GameAsset/TableDataAsset/TableAssetCommon.h"
+#include "GameAsset/TableDefine/RPGPlayerSeatDataTableRow.h"
+
 
 const FPrimaryAssetType	URPGAssetManager::PotionItemType = TEXT("Potion");
 const FPrimaryAssetType	URPGAssetManager::SkillItemType = TEXT("Skill");

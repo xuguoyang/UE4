@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "ModuleInterface.h"
-#include "Modules/ModuleManager.h"
+#include <Modules/ModuleInterface.h>
+#include <Modules/ModuleManager.h>
 
 /** Module interface for this game's loading screens */
 class IActionRPGLoadingScreenModule : public IModuleInterface

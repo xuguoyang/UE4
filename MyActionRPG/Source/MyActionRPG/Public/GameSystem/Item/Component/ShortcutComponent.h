@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "RPGItemTypes.h"
 #include "ShortcutComponent.generated.h"
 
 // ¿ì½ÝÀ¸¸ñ×Ó

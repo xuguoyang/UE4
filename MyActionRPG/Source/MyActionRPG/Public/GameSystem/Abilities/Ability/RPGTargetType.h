@@ -4,7 +4,6 @@
 
 #include "MyActionRPG.h"
 #include "UObject/NoExportTypes.h"
-#include "GameplayAbilityTypes.h"
 #include "RPGTargetType.generated.h"
 
 /**

@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "WeakObjectPtrTemplates.h"
 #include "ItemBase.generated.h"
 
 /**

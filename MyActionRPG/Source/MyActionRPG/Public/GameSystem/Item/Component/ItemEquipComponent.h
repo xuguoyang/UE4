@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "RPGItemTypes.h"
+#include "Define/RPGItemTypes.h"
 #include "ItemEquipComponent.generated.h"
 
 class UItemBase;

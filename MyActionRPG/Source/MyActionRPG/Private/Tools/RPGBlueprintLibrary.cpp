@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGBlueprintLibrary.h"
-#include "TableAssetCommon.h"
-#include "SoftObjectPath.h"
+#include "Tools/RPGBlueprintLibrary.h"
+#include "GameAsset/TableDataAsset/TableAssetCommon.h"
+#include <UObject/SoftObjectPath.h>
 
 bool URPGBlueprintLibrary::IsInEditor()
 {

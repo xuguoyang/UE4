@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TableAssetBase.h"
+#include "GameAsset/TableDataAsset/TableAssetBase.h"
 #include "TableAssetCommon.generated.h"
 
 class UDataTable;

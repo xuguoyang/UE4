@@ -141,37 +141,37 @@ protected:
     // 客户端属性回调
 protected:
     UFUNCTION()
-    void OnRep_Strength();
+    void OnRep_Strength(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_Agility();
+    void OnRep_Agility(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_Wisdom();
+    void OnRep_Wisdom(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_Health();
+    void OnRep_Health(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_MaxHealth();
+    void OnRep_MaxHealth(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_Mana();
+    void OnRep_Mana(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_MaxMana();
+    void OnRep_MaxMana(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_AttackPower();
+    void OnRep_AttackPower(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_DefensePower();
+    void OnRep_DefensePower(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_MoveSpeed();
+    void OnRep_MoveSpeed(const FRPGAttributeData& OldValue);
 
     UFUNCTION()
-    void OnRep_AttackInterval();
+    void OnRep_AttackInterval(const FRPGAttributeData& OldValue);
 
     // 处理属性
 private:

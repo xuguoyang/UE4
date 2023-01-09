@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGDamageExecution.h"
-#include "RPGAttributeSet.h"
-#include "AbilitySystemComponent.h"
+#include "GameSystem/Abilities/Attribute/RPGDamageExecution.h"
+#include "GameSystem/Abilities/Attribute/RPGAttributeSet.h"
+#include <AbilitySystemComponent.h>
 
 struct RPGDamageStatic
 {

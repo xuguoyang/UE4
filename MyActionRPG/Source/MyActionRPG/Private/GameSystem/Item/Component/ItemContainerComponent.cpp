@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ItemContainerComponent.h"
-#include "TableAssetCommon.h"
-#include "RPGItemDataTableRow.h"
-#include "ItemBase.h"
-#include "Engine/ActorChannel.h"
+#include "GameSystem/Item/Component/ItemContainerComponent.h"
+#include "GameAsset/TableDataAsset/TableAssetCommon.h"
+#include "GameAsset/TableDefine/RPGItemDataTableRow.h"
+#include "GameSystem/Item/ItemBase.h"
+#include <Engine/ActorChannel.h>
 
 // Sets default values for this component's properties
 UItemContainerComponent::UItemContainerComponent():
@@ -14,7 +14,7 @@ UItemContainerComponent::UItemContainerComponent():
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	//PrimaryComponentTick.bCanEverTick = true;
-    SetIsReplicated(true);
+    SetIsReplicatedByDefault(true);
 }
 
 

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "MyActionRPG.h"
-#include "Engine/DataTable.h"
-#include "GameFramework/Actor.h"
-#include "SlateBrush.h"
+#include <Engine/DataTable.h>
+#include <GameFramework/Actor.h>
+#include <Styling/SlateBrush.h>
 #include "RPGRoleDataTableRow.generated.h"
 
 

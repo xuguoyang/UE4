@@ -3,7 +3,7 @@
 #pragma once
 
 #include <map>
-#include "SharedPointer.h"
+
 
 class GameStageBase;
  

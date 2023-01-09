@@ -1,4 +1,4 @@
-#include "GameStageSelect.h"
+#include "GamePlaying/GameClientStage/GameStageSelect.h"
 
 GameStageSelect::GameStageSelect()
 {

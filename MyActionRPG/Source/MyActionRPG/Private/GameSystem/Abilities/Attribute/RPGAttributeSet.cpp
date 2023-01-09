@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGAttributeSet.h"
-#include "GameplayEffect.h"
-#include "GameplayEffectExtension.h"
-#include "AbilitySystemComponent.h"
-#include "RPGCharacterBase.h"
-#include "GameFramework/Controller.h"
+#include "GameSystem/Abilities/Attribute/RPGAttributeSet.h"
+#include <GameplayEffect.h>
+#include <GameplayEffectExtension.h>
+#include <AbilitySystemComponent.h>
+#include "GameSystem/Roles/RPGCharacterBase.h"
+#include <GameFramework/Controller.h>
 
 
 URPGAttributeSet::URPGAttributeSet()
@@ -57,58 +57,58 @@ void URPGAttributeSet::AdjustAttributeForMaxChange(FGameplayAttributeData& Affec
     }
 }
 
-void URPGAttributeSet::OnRep_Health()
+void URPGAttributeSet::OnRep_Health(const FRPGAttributeData& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, Health);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, Health, OldValue);
 }
 
-void URPGAttributeSet::OnRep_MaxHealth()
+void URPGAttributeSet::OnRep_MaxHealth(const FRPGAttributeData& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, MaxHealth);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, MaxHealth, OldValue);
 }
 
-void URPGAttributeSet::OnRep_Mana()
+void URPGAttributeSet::OnRep_Mana(const FRPGAttributeData& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, Mana);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, Mana, OldValue);
 }
 
-void URPGAttributeSet::OnRep_MaxMana()
+void URPGAttributeSet::OnRep_MaxMana(const FRPGAttributeData& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, MaxMana);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, MaxMana, OldValue);
 }
 
-void URPGAttributeSet::OnRep_AttackPower()
+void URPGAttributeSet::OnRep_AttackPower(const FRPGAttributeData& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, AttackPower);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, AttackPower, OldValue);
 }
 
-void URPGAttributeSet::OnRep_DefensePower()
+void URPGAttributeSet::OnRep_DefensePower(const FRPGAttributeData& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, DefensePower);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, DefensePower, OldValue);
 }
 
-void URPGAttributeSet::OnRep_MoveSpeed()
+void URPGAttributeSet::OnRep_MoveSpeed(const FRPGAttributeData& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, MoveSpeed);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URPGAttributeSet, MoveSpeed, OldValue);
 }
 
-void URPGAttributeSet::OnRep_AttackInterval()
-{
-
-}
-
-
-void URPGAttributeSet::OnRep_Strength()
+void URPGAttributeSet::OnRep_AttackInterval(const FRPGAttributeData& OldValue)
 {
 
 }
 
-void URPGAttributeSet::OnRep_Agility()
+
+void URPGAttributeSet::OnRep_Strength(const FRPGAttributeData& OldValue)
 {
 
 }
 
-void URPGAttributeSet::OnRep_Wisdom()
+void URPGAttributeSet::OnRep_Agility(const FRPGAttributeData& OldValue)
+{
+
+}
+
+void URPGAttributeSet::OnRep_Wisdom(const FRPGAttributeData& OldValue)
 {
 
 }

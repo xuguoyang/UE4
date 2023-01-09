@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
-#include "DelegateCombinations.h"
 #include "RPGPlayerStateBase.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSelectedRoleDelegate, ARPGPlayerStateBase*, pStateBase);

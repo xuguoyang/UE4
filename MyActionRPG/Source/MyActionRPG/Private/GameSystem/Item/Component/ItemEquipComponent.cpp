@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ItemEquipComponent.h"
-#include "Components/SkeletalMeshComponent.h"
+#include "GameSystem/Item/Component/ItemEquipComponent.h"
+#include <Components/SkeletalMeshComponent.h>
 
 // Sets default values for this component's properties
 UItemEquipComponent::UItemEquipComponent()

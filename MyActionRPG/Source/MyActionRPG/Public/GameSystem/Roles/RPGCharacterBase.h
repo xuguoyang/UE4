@@ -4,7 +4,7 @@
 #include "RPGType.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
-#include "RPGGameplayAbility.h"
+#include "GameSystem/Abilities/Ability/RPGGameplayAbility.h"
 #include "GameplayAbilitySpec.h"
 #include "RPGCharacterBase.generated.h"
 

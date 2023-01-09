@@ -1,6 +1,6 @@
-#include "RPGPlayerSeats.h"
-#include "TableAssetCommon.h"
-#include "RPGPlayerSeatDataTableRow.h"
+#include "GameSystem/Player/RPGPlayerSeats.h"
+#include "GameAsset/TableDataAsset/TableAssetCommon.h"
+#include "GameAsset/TableDefine/RPGPlayerSeatDataTableRow.h"
 
 
 ARPGPlayerSeats::ARPGPlayerSeats()

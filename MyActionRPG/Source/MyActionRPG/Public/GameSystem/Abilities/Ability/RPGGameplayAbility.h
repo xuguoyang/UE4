@@ -5,9 +5,8 @@
 #include "Abilities/GameplayAbility.h"
 #include "GameplayTagContainer.h"
 #include "RPGAbilityTypes.h"
-#include "GameplayAbilityTypes.h"
 #include "GameplayEffectTypes.h"
-#include "ShortcutUseInterface.h"
+#include "Interface/ShortcutUseInterface.h"
 #include "RPGGameplayAbility.generated.h"
 
 /**

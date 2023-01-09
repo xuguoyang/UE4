@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGAbilitySystemComponent.h"
-#include "RPGCharacterBase.h"
-#include "RPGGameplayAbility.h"
-#include "AbilitySystemGlobals.h"
-#include "RPGAttributeSet.h"
-#include "GameplayCueManager.h"
+#include "GameSystem/Abilities/RPGAbilitySystemComponent.h"
+#include "GameSystem/Roles/RPGCharacterBase.h"
+#include "GameSystem/Abilities/Ability/RPGGameplayAbility.h"
+#include <AbilitySystemGlobals.h>
+#include "GameSystem/Abilities/Attribute/RPGAttributeSet.h"
+#include <GameplayCueManager.h>
 
 URPGAbilitySystemComponent::URPGAbilitySystemComponent(const FObjectInitializer& ObjectInitializer):
 Super(ObjectInitializer)

@@ -4,7 +4,6 @@
 
 #include "MyActionRPG.h"
 #include "RPGTargetType.h"
-#include "GameplayAbilityTargetTypes.h"
 #include "Engine/EngineTypes.h"
 #include "RPGAbilityTypes.generated.h"
 

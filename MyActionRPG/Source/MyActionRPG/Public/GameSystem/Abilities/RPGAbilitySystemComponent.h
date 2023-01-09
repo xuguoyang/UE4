@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
-#include "RPGGameplayAbility.h"
 #include "RPGAbilitySystemComponent.generated.h"
 
 USTRUCT(BlueprintType)

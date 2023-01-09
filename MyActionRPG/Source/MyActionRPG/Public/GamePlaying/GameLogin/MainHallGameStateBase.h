@@ -4,9 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameState.h"
-#include "WeakObjectPtrTemplates.h"
-#include "RPGPlayerSeats.h"
-#include "ObjectMacros.h"
+#include "GameSystem/Player/RPGPlayerSeats.h"
 #include "MainHallGameStateBase.generated.h"
 
 /**

@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ShortcutComponent.h"
-#include "ShortcutUseInterface.h"
+#include "GameSystem/Item/Component/ShortcutComponent.h"
+#include "Interface/ShortcutUseInterface.h"
 
 bool FShortcutGird::UseItem()
 {

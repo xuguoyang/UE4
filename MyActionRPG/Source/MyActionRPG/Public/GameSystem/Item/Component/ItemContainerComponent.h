@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Array.h"
 #include "Define/RPGItemTypes.h"
 #include "ItemContainerComponent.generated.h"
 

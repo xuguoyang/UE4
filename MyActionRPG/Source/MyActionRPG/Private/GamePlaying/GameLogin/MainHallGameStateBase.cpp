@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MainHallGameStateBase.h"
-#include "Engine/Player.h"
-#include "RPGPlayerControllerBase.h"
-#include "GameFramework/PlayerState.h"
+#include "GamePlaying/GameLogin/MainHallGameStateBase.h"
+#include <Engine/Player.h>
+#include "GameSystem/Player/RPGPlayerControllerBase.h"
+#include <GameFramework/PlayerState.h>
 #include "RPGGameInstanceBase.h"
-#include "RPGPlayerSeats.h"
+#include "GameSystem/Player/RPGPlayerSeats.h"
 
 AMainHallGameStateBase::AMainHallGameStateBase():
 m_CountDown(10)

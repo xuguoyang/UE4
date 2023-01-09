@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RPGCharacterBase.h"
-#include "RPGAttributeSet.h"
-#include "AbilitySystemComponent.h"
-#include "Abilities/RPGAbilitySystemComponent.h"
+#include "GameSystem/Roles/RPGCharacterBase.h"
+#include "GameSystem/Abilities/Attribute/RPGAttributeSet.h"
+#include <AbilitySystemComponent.h>
+#include "GameSystem/Abilities/RPGAbilitySystemComponent.h"
 
 // Sets default values
 ARPGCharacterBase::ARPGCharacterBase()

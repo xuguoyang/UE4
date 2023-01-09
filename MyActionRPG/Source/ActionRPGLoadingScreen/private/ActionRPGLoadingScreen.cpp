@@ -1,10 +1,10 @@
 // Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
 
-#include "ActionRPGLoadingScreen.h"
-#include "SlateBasics.h"
-#include "SlateExtras.h"
-#include "MoviePlayer.h"
-#include "SThrobber.h"
+#include "ActionRPGLoadingScreen/public/ActionRPGLoadingScreen.h"
+#include <SlateBasics.h>
+#include <SlateExtras.h>
+#include <MoviePlayer.h>
+#include <Widgets/Images/SThrobber.h>
 
 // This module must be loaded "PreLoadingScreen" in the .uproject file, otherwise it will not hook in time!
 struct FRPGLoadingScreenBrush : public FSlateDynamicImageBrush, public FGCObject
