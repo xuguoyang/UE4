@@ -3,11 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystemComponent.h"
+#include <Define/RPGItemTypes.h>
+#include <Interface/ShortcutUseInterface.h>
+#include "ItemBase.h"
 #include "UsableItem.generated.h"
 
 /**
  * 
- */
+ */ 
 UCLASS()
 class MYACTIONRPG_API UUsableItem : public UItemBase, public IShortcutUseInterface
 {
